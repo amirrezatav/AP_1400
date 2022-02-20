@@ -57,8 +57,8 @@ namespace DataType
             var babaei2 = new MyClass(1); // define and construct
             MyClass babaei3 = new MyClass(1,2);  // define and construct
             MyClass babaei4 = new MyClass(1,2,3);  // define and construct
-            MyClass babaei5 = MyClass.test;
-            babaei5 = MyClass.test2();
+                                                   // MyClass babaei5 = MyClass.test;
+            MyClass babaei5 = MyClass.test2();
 
             //// string
             string litstr = "D:\\University\\Term 6\\AP\\PDF";
@@ -84,7 +84,6 @@ namespace DataType
             // integer32 = floating_Double; // double to int error
             integer32 = Convert.ToInt32(floating_Double); // double to int with function
 
-            integer32 = Int32.TryParse(str); // string to long without any error
             integer32 = Convert.ToInt32(str); // string to long 
             str = floating_Double.ToString(); // any type to string
 
@@ -114,7 +113,7 @@ namespace DataType
             var a = 5;
 
             // Null
-            string str = null;
+            string str2 = null;
             int? myint = null;
             Console.WriteLine(myint);
             if(myint != null)
@@ -146,7 +145,6 @@ namespace DataType
             int minute = now.Minute;
             int second = now.Second;
             now.AddDays(5); // add five day
-            int dayofweek = now.DayOfWeek();
             Console.ReadLine();
         }
     }
