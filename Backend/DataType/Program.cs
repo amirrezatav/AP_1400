@@ -111,7 +111,6 @@ namespace DataType
 
             //// var
             var a = 5;
-
             // Null
             string str2 = null;
             int? myint = null;
