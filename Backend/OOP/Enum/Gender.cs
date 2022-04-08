@@ -4,14 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP
+namespace OOP.Enum
 {
-    public class Program
+    public enum Gender
     {
-        static void Main(string[] args)
-        {
-            
-
-        }
+        male,
+        female
     }
 }
