@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CD812FF2-77D2-4AC6-A867-AFA3FC90B74C}</ProjectGuid>
+    <ProjectGuid>{994D3FF1-4CE7-4A0D-8D36-43A7AB939B9A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>OOP</RootNamespace>
-    <AssemblyName>OOP</AssemblyName>
+    <RootNamespace>Abstraction</RootNamespace>
+    <AssemblyName>Abstraction</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,20 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\Course.cs" />
-    <Compile Include="Entity\Grade.cs" />
-    <Compile Include="Entity\SchoolStaff.cs" />
-    <Compile Include="Entity\Teacher.cs" />
-    <Compile Include="Enum\Gender.cs" />
-    <Compile Include="IRepository\IStudentRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entity\Student.cs" />
-    <Compile Include="Repository\StudentRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

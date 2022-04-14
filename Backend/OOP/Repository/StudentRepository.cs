@@ -1,5 +1,6 @@
 ﻿using OOP.Entity;
 using OOP.Enum;
+using OOP.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,13 @@ using System.Threading.Tasks;
 
 namespace OOP.Repository
 {
-    public class StudentRepository
+    public class StudentRepository : IStudentRepository
     {
         List<Student> StudentsContext;
         List<Grade> GradesContext;
         List<Teacher> TeachersContext;
         List<Course> CoursesContext;
+
 
         public StudentRepository()
         {
@@ -27,9 +29,9 @@ namespace OOP.Repository
 
         // CRUD in List
         // Create
-        public Student CreateStudent(Student newstudent)
+         Student IStudentRepository.CreateStudent(Student newstudent)
         {
-            if(StudentsContext.Where(x => x.Id == newstudent.Id).Any())
+            if (StudentsContext.Where(x => x.Id == newstudent.Id).Any())
             {
                 throw new Exception($"Student with StudentId = {newstudent.Id} already is exist ");
             }
@@ -54,7 +56,7 @@ namespace OOP.Repository
             //}
             return StudentsContext.Where(x => x.Id == Id).FirstOrDefault();
         }
-        public List<Student> SearchByFirstName(string FirstName)
+        public List<Student> Search(string FirstName,string LastName = null, DateTime? BirthDate = null)
         {
             return StudentsContext.Where(x => x.FirstName.Contains(FirstName)).ToList();
         }

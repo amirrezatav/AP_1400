@@ -7,13 +7,9 @@ using System.Threading.Tasks;
 
 namespace OOP.Entity
 {
-    public class Teacher
+    public class Teacher : SchoolStaff
     {
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public DateTime BirthDate { get; set; }
-        public Gender Gender { get; set; }
-        public string MobilePhone { get; set; }
+        public DateTime StartWorkTime { get; set; }
+        public int StudentNumber { get; set; }
     }
 }
