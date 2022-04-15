@@ -18,15 +18,29 @@ namespace OOP
         }
         static void Main(string[] args)
         {
-            IStudentRepository th = new StudentRepository();
-            th.Search(
-                FirstName:"Ali",
-                BirthDate: DateTime.Now );
+            IStudentRepository _repo = new StudentRepository();
 
-            var res = Test();
-            Console.WriteLine(res.Item1);
-            Console.WriteLine(res.Item2);
-            Console.WriteLine(res.Item3);
+            _repo.CreateStudent(new Student {
+            BirthDate = Convert.ToDateTime("2001-03-03"),
+            FirstName = "Amirreza",
+            LastName = "Tavakoli",
+            Id = 1,
+            Gender =Enum.Gender.male,
+            MobilePhone = "09028883854",
+            });
+
+            var student = _repo.GetStudentById(1);
+
+            Console.WriteLine(student.FirstName);
+            Console.ReadLine();
+            //th.Search(
+            //    FirstName:"Ali",
+            //    BirthDate: DateTime.Now );
+
+            //var res = Test();
+            //Console.WriteLine(res.Item1);
+            //Console.WriteLine(res.Item2);
+            //Console.WriteLine(res.Item3);
 
         }
     }

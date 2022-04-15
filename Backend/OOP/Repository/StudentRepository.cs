@@ -9,6 +9,13 @@ using System.Threading.Tasks;
 
 namespace OOP.Repository
 {
+    public class CRUD
+    {
+        public static void Create<T> (List<T> Context,T item)
+        {
+            Context.Add(item);
+        }
+    }
     public class StudentRepository : IStudentRepository
     {
         List<Student> StudentsContext;
@@ -37,7 +44,9 @@ namespace OOP.Repository
             }
             else
             {
-                StudentsContext.Add(newstudent);
+                CRUD.Create<Student>(StudentsContext, newstudent);
+                CRUD.Create(StudentsContext, newstudent);
+
                 return newstudent;
             }
         }
