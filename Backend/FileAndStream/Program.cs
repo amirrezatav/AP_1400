@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace FileAndStream
 {
@@ -15,9 +16,50 @@ namespace FileAndStream
             //ReadTextFile();
             // WriteTextFile();
             // WorkingWithFileInfo();
-            WorkingWithDirectory();
+            // WorkingWithDirectory();
+            // WorkingWithPath();
+            WorkingWithStream();
             Console.ReadLine();
         }
+
+        private static void WorkingWithStream()
+        {
+            // text path 
+            string desktoppath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string filepath = Path.Combine(desktoppath, "testext.txt");
+
+            // our text 
+            string str = "سلام Animations are not the only useful type of timeline. Other timeline classes are provided to help you organize sets of timelines, and to apply timelines to properties. Container timelines derive from the TimelineGroup class, and include ParallelTimeline and Storyboard.A Storyboard is a type of container timeline that provides targeting information for the timelines it contains. A Storyboard can contain any type of Timeline, including other container timelines and animations. Storyboard objects enable you to combine timelines that affect a variety of objects and properties into a single timeline tree, making it easy to organize and control complex timing behaviors. For example, suppose you want a button that does these three things.Grow and change color when the user selects the button.Shrink away and then grow back to its original size when clicked.Shrink and fade to 50 percent opacity when it becomes disabled.In this case, you have multiple sets of animations that apply to the same object, and you want to play at different times, dependent on the state of the button. Storyboard objects enable you to organize animations and apply them in groups to one or more objects.";
+            
+            // create stream for write 
+            using (Stream streamWriter = new FileStream(filepath, FileMode.Create, FileAccess.Write))
+            {
+                // we want to write 20 byte each time in stream
+                const int bufferSize = 20; // 20 Byte
+                                           // create buffer 
+                byte[] buffer = new byte[bufferSize];
+
+                // 45 Byte -> 25 -> 5 -> error
+                int byteRead = 0;
+
+                int Position = 0;
+                int remianByte = 0;
+
+                while (Position < str.Length)
+                {
+                    remianByte = str.Length - byteRead;
+                    byteRead = remianByte > bufferSize ? bufferSize : remianByte;
+
+                    string writeStr = str.Substring(Position, byteRead);
+
+                    buffer = Encoding.UTF8.GetBytes(writeStr);
+                    streamWriter.Write(buffer, 0, byteRead);
+
+                    Position += byteRead;
+                }
+            }
+        }
+
         static void Code1()
         {
             // Path , file , Directory , FileStream
@@ -122,7 +164,7 @@ namespace FileAndStream
             string DirectoryPath = Path.Combine(applicationpath, directoryname);
             Directory.CreateDirectory(DirectoryPath);
             // Directory.Delete(DirectoryPath);
-                               // Get All File in directory as list        Get FileName       
+            // Get All File in directory as list        Get FileName       
             var res = Directory.EnumerateFiles(applicationpath)
                 .Where(x => Path.GetFileName(x).ToLower().Contains("ba"))
                 .ToList(); // Visual
@@ -135,7 +177,7 @@ namespace FileAndStream
             foreach (var item in res2)
                 Console.WriteLine(item);
 
-            if(Directory.Exists(directoryname))
+            if (Directory.Exists(directoryname))
             {
                 // Directory Exists
             }
@@ -145,5 +187,19 @@ namespace FileAndStream
             }
             Directory.GetDirectories(directoryname); // Get All directories in directory as array
         }
+        private static void WorkingWithPath()
+        {
+            string path = @"./Babaei";
+            //Directory.CreateDirectory(path);
+            var Files = Directory.GetFiles(path);
+            Console.WriteLine("File in ..");
+            foreach (var item in Files)
+                Console.WriteLine(item);
+            
+
+        }
+
+
+
     }
 }
