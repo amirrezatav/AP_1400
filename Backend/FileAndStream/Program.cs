@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 
 namespace FileAndStream
 {
@@ -28,9 +29,11 @@ namespace FileAndStream
             string desktoppath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string filepath = Path.Combine(desktoppath, "testext.txt");
 
+
             // our text 
             string str = "سلام Animations are not the only useful type of timeline. Other timeline classes are provided to help you organize sets of timelines, and to apply timelines to properties. Container timelines derive from the TimelineGroup class, and include ParallelTimeline and Storyboard.A Storyboard is a type of container timeline that provides targeting information for the timelines it contains. A Storyboard can contain any type of Timeline, including other container timelines and animations. Storyboard objects enable you to combine timelines that affect a variety of objects and properties into a single timeline tree, making it easy to organize and control complex timing behaviors. For example, suppose you want a button that does these three things.Grow and change color when the user selects the button.Shrink away and then grow back to its original size when clicked.Shrink and fade to 50 percent opacity when it becomes disabled.In this case, you have multiple sets of animations that apply to the same object, and you want to play at different times, dependent on the state of the button. Storyboard objects enable you to organize animations and apply them in groups to one or more objects.";
             
+
             // create stream for write 
             using (Stream streamWriter = new FileStream(filepath, FileMode.Create, FileAccess.Write))
             {
@@ -43,11 +46,12 @@ namespace FileAndStream
                 int byteRead = 0;
 
                 int Position = 0;
+
                 int remianByte = 0;
 
                 while (Position < str.Length)
                 {
-                    remianByte = str.Length - byteRead;
+                    remianByte = str.Length - Position;
                     byteRead = remianByte > bufferSize ? bufferSize : remianByte;
 
                     string writeStr = str.Substring(Position, byteRead);
@@ -58,6 +62,82 @@ namespace FileAndStream
                     Position += byteRead;
                 }
             }
+
+            // create stream for Read 
+            using (Stream StreamReader = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+                // we want to write 20 byte each time in stream
+                const int bufferSize = 20; // 20 Byte
+                                           // create buffer 
+
+                byte[] buffer = new byte[bufferSize];
+
+                // 45 Byte -> 25 -> 5 -> error
+                int byteRead = 0;
+
+                int Position = 0;
+
+                int remianByte = 0;
+
+                while (Position < str.Length)
+                {
+                    remianByte = str.Length - Position;
+
+                    byteRead = remianByte > bufferSize ? bufferSize : remianByte;
+
+                    string writeStr = str.Substring(Position, byteRead);
+
+                    StreamReader.Read(buffer, 0, byteRead);
+                    string res = Encoding.UTF8.GetString(buffer);
+                    Console.Write(res);
+
+                   // Thread.Sleep(1000);
+
+                    Position += byteRead;
+                }
+            }
+
+            desktoppath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            filepath = Path.Combine(desktoppath, "Copy1.jpg");
+
+            // create stream for Read and Write Image
+            using (Stream StreamReader = new FileStream(filepath, FileMode.Open, FileAccess.Read))
+            {
+               
+
+                // we want to write 20 byte each time in stream
+                const int bufferSize = 20; // 20 Byte
+                                           // create buffer 
+
+                byte[] buffer = new byte[bufferSize];
+
+                // 45 Byte -> 25 -> 5 -> error
+                int byteRead = 0;
+
+                int Position = 0;
+
+                int remianByte = 0;
+
+                while (Position < str.Length)
+                {
+                    remianByte = str.Length - Position;
+
+                    byteRead = remianByte > bufferSize ? bufferSize : remianByte;
+
+                    string writeStr = str.Substring(Position, byteRead);
+
+                    StreamReader.Read(buffer, 0, byteRead);
+                    string res = Encoding.UTF8.GetString(buffer);
+                    Console.Write(res);
+
+                    Thread.Sleep(1000);
+
+                    Position += byteRead;
+                }
+            }
+
+
+            // How to convert Image to StringBase64 ? 
         }
 
         static void Code1()
