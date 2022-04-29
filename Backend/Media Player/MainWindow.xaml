@@ -1,0 +1,35 @@
+﻿<Window x:Class="Media_Player.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Media_Player"
+        mc:Ignorable="d"
+        Title="Media Plyer" Height="450" Width="800">
+    <Grid>
+        <Menu HorizontalAlignment="Stretch" Height="20" VerticalAlignment="Top" >
+            <MenuItem Header="_Image">
+                <MenuItem Header="_Open New" Click="ImageOpen_Click"/>
+                <MenuItem Header="_Save As" Click="ImageSaveAs_Click" />
+                <MenuItem Header="_Print" />
+                <Separator />
+                <MenuItem Header="_Close" />
+            </MenuItem>
+            <MenuItem Header="Video">
+                <MenuItem Header="_Open New" Click="VideoOpen_Click" />
+                <MenuItem Header="Stop" Click="StopVideo_Click"/>
+                <Separator />
+                <MenuItem Header="_Close" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Header="About Us"/>
+                <MenuItem Header="Check for Update"/>
+                <MenuItem Header="Register"/>
+            </MenuItem>
+        </Menu>
+        <Grid Margin="0 20 0 0">
+            <Image Name="ImageBox" ></Image>
+            <MediaElement Name="VideoBox" LoadedBehavior="Manual"></MediaElement>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,21 @@
+﻿<Window x:Class="NotePad.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NotePad"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBox Name="MyTextBox" Grid.Row="0"  Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="SkyBlue">
+        </TextBox>
+        <StackPanel Orientation="Horizontal"  Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0">
+            <Button Width="70" Click="Choose_Click">Choose</Button>
+            <Button Click="Save_Click"  Width="70" Margin="10 0 0 0">Save</Button>
+        </StackPanel>
+    </Grid>
+</Window>
